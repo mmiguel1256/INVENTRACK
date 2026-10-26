@@ -2,10 +2,15 @@
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
-# Copiar archivos de dependencias para aprovechar la caché de Docker
+# Copiar archivos de dependencias
 COPY pom.xml .
 COPY mvnw .
 COPY .mvn .mvn
+
+# Dar permisos de ejecución al script mvnw
+RUN chmod +x mvnw
+
+# Descargar dependencias en caché
 RUN ./mvnw dependency:go-offline -B
 
 # Copiar el código fuente y compilar el archivo JAR
@@ -16,14 +21,9 @@ RUN ./mvnw clean package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Copiar el JAR generado en la etapa anterior
 COPY --from=build /app/target/*.jar app.jar
 
-# Puerto por defecto expuesto por el contenedor
 EXPOSE 8080
-
-# Variables de entorno por defecto
 ENV PORT=8080
 
-# Comando de arranque de la aplicación
 ENTRYPOINT ["sh", "-c", "java -jar app.jar --server.port=${PORT}"]
