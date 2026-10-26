@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BodegaConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">inventrack</a> &gt; <a href="index.source.html" class="el_package">com.inventrack.api.models</a> &gt; <span class="el_source">BodegaConfig.java</span></div><h1>BodegaConfig.java</h1><pre class="source lang-java linenums">package com.inventrack.api.models;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = &quot;bodega_config&quot;)
+public class BodegaConfig {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    
+    @Column(name = &quot;largo_total&quot;, nullable = false, precision = 10, scale = 2)
+    private BigDecimal largoTotal;
+    
+    @Column(name = &quot;ancho_total&quot;, nullable = false, precision = 10, scale = 2)
+    private BigDecimal anchoTotal;
+    
+    @Column(name = &quot;alto_total&quot;, nullable = false, precision = 10, scale = 2)
+    private BigDecimal altoTotal;
+    
+    @Column(name = &quot;capacidad_volumetrica&quot;, insertable = false, updatable = false, precision = 12, scale = 2)
+    private BigDecimal capacidadVolumetrica;
+
+<span class="nc" id="L29">    public BodegaConfig() {}</span>
+
+<span class="nc" id="L31">    public Long getId() { return id; }</span>
+<span class="nc" id="L32">    public void setId(Long id) { this.id = id; }</span>
+<span class="nc" id="L33">    public String getNombre() { return nombre; }</span>
+<span class="nc" id="L34">    public void setNombre(String nombre) { this.nombre = nombre; }</span>
+<span class="nc" id="L35">    public BigDecimal getLargoTotal() { return largoTotal; }</span>
+<span class="nc" id="L36">    public void setLargoTotal(BigDecimal largoTotal) { this.largoTotal = largoTotal; }</span>
+<span class="nc" id="L37">    public BigDecimal getAnchoTotal() { return anchoTotal; }</span>
+<span class="nc" id="L38">    public void setAnchoTotal(BigDecimal anchoTotal) { this.anchoTotal = anchoTotal; }</span>
+<span class="nc" id="L39">    public BigDecimal getAltoTotal() { return altoTotal; }</span>
+<span class="nc" id="L40">    public void setAltoTotal(BigDecimal altoTotal) { this.altoTotal = altoTotal; }</span>
+<span class="nc" id="L41">    public BigDecimal getCapacidadVolumetrica() { return capacidadVolumetrica; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

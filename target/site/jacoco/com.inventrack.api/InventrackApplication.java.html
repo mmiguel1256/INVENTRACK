@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InventrackApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">inventrack</a> &gt; <a href="index.source.html" class="el_package">com.inventrack.api</a> &gt; <span class="el_source">InventrackApplication.java</span></div><h1>InventrackApplication.java</h1><pre class="source lang-java linenums">package com.inventrack.api;
+
+import com.inventrack.api.models.BodegaConfig;
+import com.inventrack.api.models.Producto;
+import com.inventrack.api.models.Rol;
+import com.inventrack.api.models.Usuario;
+import com.inventrack.api.repositories.BodegaConfigRepository;
+import com.inventrack.api.repositories.ProductoRepository;
+import com.inventrack.api.repositories.RolRepository;
+import com.inventrack.api.repositories.UsuarioRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.math.BigDecimal;
+
+@SpringBootApplication
+<span class="nc" id="L20">public class InventrackApplication {</span>
+
+	public static void main(String[] args) {
+<span class="nc" id="L23">		SpringApplication.run(InventrackApplication.class, args);</span>
+<span class="nc" id="L24">	}</span>
+
+	@Bean
+	CommandLineRunner initDatabase(
+			RolRepository rolRepository, 
+			UsuarioRepository usuarioRepository, 
+			BodegaConfigRepository bodegaRepository,
+			ProductoRepository productoRepository,
+			PasswordEncoder passwordEncoder) {
+<span class="nc" id="L33">		return args -&gt; {</span>
+			// 1. Crear Roles si no existen
+			Rol adminRole;
+<span class="nc bnc" id="L36" title="All 2 branches missed.">			if (rolRepository.findByNombre(&quot;ADMINISTRADOR&quot;).isEmpty()) {</span>
+<span class="nc" id="L37">				adminRole = new Rol();</span>
+<span class="nc" id="L38">				adminRole.setNombre(&quot;ADMINISTRADOR&quot;);</span>
+<span class="nc" id="L39">				adminRole.setDescripcion(&quot;Acceso total al sistema&quot;);</span>
+<span class="nc" id="L40">				adminRole = rolRepository.save(adminRole);</span>
+<span class="nc" id="L41">			} else {</span>
+<span class="nc" id="L42">				adminRole = rolRepository.findByNombre(&quot;ADMINISTRADOR&quot;).get();</span>
+			}
+
+			Rol gerenteRole;
+<span class="nc bnc" id="L46" title="All 2 branches missed.">			if (rolRepository.findByNombre(&quot;GERENTE&quot;).isEmpty()) {</span>
+<span class="nc" id="L47">				gerenteRole = new Rol();</span>
+<span class="nc" id="L48">				gerenteRole.setNombre(&quot;GERENTE&quot;);</span>
+<span class="nc" id="L49">				gerenteRole.setDescripcion(&quot;Gestión y visualización estratégica&quot;);</span>
+<span class="nc" id="L50">				gerenteRole = rolRepository.save(gerenteRole);</span>
+<span class="nc" id="L51">			} else {</span>
+<span class="nc" id="L52">				gerenteRole = rolRepository.findByNombre(&quot;GERENTE&quot;).get();</span>
+			}
+
+			Rol operarioRole;
+<span class="nc bnc" id="L56" title="All 2 branches missed.">			if (rolRepository.findByNombre(&quot;OPERARIO&quot;).isEmpty()) {</span>
+<span class="nc" id="L57">				operarioRole = new Rol();</span>
+<span class="nc" id="L58">				operarioRole.setNombre(&quot;OPERARIO&quot;);</span>
+<span class="nc" id="L59">				operarioRole.setDescripcion(&quot;Control operativo de existencias&quot;);</span>
+<span class="nc" id="L60">				operarioRole = rolRepository.save(operarioRole);</span>
+<span class="nc" id="L61">			} else {</span>
+<span class="nc" id="L62">				operarioRole = rolRepository.findByNombre(&quot;OPERARIO&quot;).get();</span>
+			}
+
+			// 2. Crear Usuarios de prueba si no existen
+<span class="nc bnc" id="L66" title="All 2 branches missed.">			if (!usuarioRepository.existsByEmail(&quot;admin@inventrack.com&quot;)) {</span>
+<span class="nc" id="L67">				Usuario admin = new Usuario();</span>
+<span class="nc" id="L68">				admin.setNombreCompleto(&quot;Administrador Principal&quot;);</span>
+<span class="nc" id="L69">				admin.setEmail(&quot;admin@inventrack.com&quot;);</span>
+<span class="nc" id="L70">				admin.setPasswordHash(passwordEncoder.encode(&quot;admin123&quot;)); // Contraseña: admin123</span>
+<span class="nc" id="L71">				admin.setRol(adminRole);</span>
+<span class="nc" id="L72">				admin.setEstado(true);</span>
+<span class="nc" id="L73">				usuarioRepository.save(admin);</span>
+			}
+
+<span class="nc bnc" id="L76" title="All 2 branches missed.">			if (!usuarioRepository.existsByEmail(&quot;gerente@inventrack.com&quot;)) {</span>
+<span class="nc" id="L77">				Usuario gerente = new Usuario();</span>
+<span class="nc" id="L78">				gerente.setNombreCompleto(&quot;Gerente de Inventario&quot;);</span>
+<span class="nc" id="L79">				gerente.setEmail(&quot;gerente@inventrack.com&quot;);</span>
+<span class="nc" id="L80">				gerente.setPasswordHash(passwordEncoder.encode(&quot;gerente123&quot;)); // Contraseña: gerente123</span>
+<span class="nc" id="L81">				gerente.setRol(gerenteRole);</span>
+<span class="nc" id="L82">				gerente.setEstado(true);</span>
+<span class="nc" id="L83">				usuarioRepository.save(gerente);</span>
+			}
+
+<span class="nc bnc" id="L86" title="All 2 branches missed.">			if (!usuarioRepository.existsByEmail(&quot;operario@inventrack.com&quot;)) {</span>
+<span class="nc" id="L87">				Usuario operario = new Usuario();</span>
+<span class="nc" id="L88">				operario.setNombreCompleto(&quot;Operario Almacén&quot;);</span>
+<span class="nc" id="L89">				operario.setEmail(&quot;operario@inventrack.com&quot;);</span>
+<span class="nc" id="L90">				operario.setPasswordHash(passwordEncoder.encode(&quot;operario123&quot;)); // Contraseña: operario123</span>
+<span class="nc" id="L91">				operario.setRol(operarioRole);</span>
+<span class="nc" id="L92">				operario.setEstado(true);</span>
+<span class="nc" id="L93">				usuarioRepository.save(operario);</span>
+<span class="nc" id="L94">				System.out.println(&quot;====== USUARIOS DE PRUEBA CREADOS ======&quot;);</span>
+<span class="nc" id="L95">				System.out.println(&quot;Admin: admin@inventrack.com / admin123&quot;);</span>
+<span class="nc" id="L96">				System.out.println(&quot;Gerente: gerente@inventrack.com / gerente123&quot;);</span>
+<span class="nc" id="L97">				System.out.println(&quot;Operario: operario@inventrack.com / operario123&quot;);</span>
+<span class="nc" id="L98">				System.out.println(&quot;=========================================&quot;);</span>
+			}
+
+			// 3. Crear Bodega inicial si no existe
+<span class="nc bnc" id="L102" title="All 2 branches missed.">			if (bodegaRepository.count() == 0) {</span>
+<span class="nc" id="L103">				BodegaConfig bodega = new BodegaConfig();</span>
+<span class="nc" id="L104">				bodega.setNombre(&quot;Bodega Central Principal&quot;);</span>
+<span class="nc" id="L105">				bodega.setLargoTotal(new BigDecimal(&quot;30.00&quot;));</span>
+<span class="nc" id="L106">				bodega.setAnchoTotal(new BigDecimal(&quot;20.00&quot;));</span>
+<span class="nc" id="L107">				bodega.setAltoTotal(new BigDecimal(&quot;6.00&quot;));</span>
+<span class="nc" id="L108">				bodegaRepository.save(bodega);</span>
+<span class="nc" id="L109">				System.out.println(&quot;====== BODEGA CENTRAL REGISTRADA ======&quot;);</span>
+			}
+
+			// 4. Crear Productos iniciales de prueba si no existen
+<span class="nc bnc" id="L113" title="All 2 branches missed.">			if (productoRepository.count() == 0) {</span>
+<span class="nc" id="L114">				Producto p1 = new Producto();</span>
+<span class="nc" id="L115">				p1.setCodigoSku(&quot;MON-34-UW&quot;);</span>
+<span class="nc" id="L116">				p1.setNombre(&quot;Monitor Curvo 34 UltraWide&quot;);</span>
+<span class="nc" id="L117">				p1.setLargo(new BigDecimal(&quot;0.85&quot;));</span>
+<span class="nc" id="L118">				p1.setAncho(new BigDecimal(&quot;0.25&quot;));</span>
+<span class="nc" id="L119">				p1.setAlto(new BigDecimal(&quot;0.50&quot;));</span>
+<span class="nc" id="L120">				p1.setStockActual(45);</span>
+<span class="nc" id="L121">				p1.setStockMinimo(10);</span>
+<span class="nc" id="L122">				p1.setEsEstrella(true);</span>
+<span class="nc" id="L123">				productoRepository.save(p1);</span>
+
+<span class="nc" id="L125">				Producto p2 = new Producto();</span>
+<span class="nc" id="L126">				p2.setCodigoSku(&quot;TEC-MEC-RGB&quot;);</span>
+<span class="nc" id="L127">				p2.setNombre(&quot;Teclado Mecánico RGB Blue&quot;);</span>
+<span class="nc" id="L128">				p2.setLargo(new BigDecimal(&quot;0.45&quot;));</span>
+<span class="nc" id="L129">				p2.setAncho(new BigDecimal(&quot;0.15&quot;));</span>
+<span class="nc" id="L130">				p2.setAlto(new BigDecimal(&quot;0.05&quot;));</span>
+<span class="nc" id="L131">				p2.setStockActual(5);</span>
+<span class="nc" id="L132">				p2.setStockMinimo(15); // Stock crítico para disparar alerta</span>
+<span class="nc" id="L133">				p2.setEsEstrella(false);</span>
+<span class="nc" id="L134">				productoRepository.save(p2);</span>
+
+<span class="nc" id="L136">				Producto p3 = new Producto();</span>
+<span class="nc" id="L137">				p3.setCodigoSku(&quot;LAP-PRO-16&quot;);</span>
+<span class="nc" id="L138">				p3.setNombre(&quot;Laptop Pro 16 M3 Max&quot;);</span>
+<span class="nc" id="L139">				p3.setLargo(new BigDecimal(&quot;0.36&quot;));</span>
+<span class="nc" id="L140">				p3.setAncho(new BigDecimal(&quot;0.25&quot;));</span>
+<span class="nc" id="L141">				p3.setAlto(new BigDecimal(&quot;0.02&quot;));</span>
+<span class="nc" id="L142">				p3.setStockActual(28);</span>
+<span class="nc" id="L143">				p3.setStockMinimo(8);</span>
+<span class="nc" id="L144">				p3.setEsEstrella(true);</span>
+<span class="nc" id="L145">				productoRepository.save(p3);</span>
+
+<span class="nc" id="L147">				Producto p4 = new Producto();</span>
+<span class="nc" id="L148">				p4.setCodigoSku(&quot;SIL-ERG-PRO&quot;);</span>
+<span class="nc" id="L149">				p4.setNombre(&quot;Silla Ergonómica Pro Racing&quot;);</span>
+<span class="nc" id="L150">				p4.setLargo(new BigDecimal(&quot;0.70&quot;));</span>
+<span class="nc" id="L151">				p4.setAncho(new BigDecimal(&quot;0.70&quot;));</span>
+<span class="nc" id="L152">				p4.setAlto(new BigDecimal(&quot;1.30&quot;));</span>
+<span class="nc" id="L153">				p4.setStockActual(14);</span>
+<span class="nc" id="L154">				p4.setStockMinimo(5);</span>
+<span class="nc" id="L155">				p4.setEsEstrella(false);</span>
+<span class="nc" id="L156">				productoRepository.save(p4);</span>
+
+<span class="nc" id="L158">				Producto p5 = new Producto();</span>
+<span class="nc" id="L159">				p5.setCodigoSku(&quot;MOU-INA-SIL&quot;);</span>
+<span class="nc" id="L160">				p5.setNombre(&quot;Mouse Inalámbrico Silent&quot;);</span>
+<span class="nc" id="L161">				p5.setLargo(new BigDecimal(&quot;0.12&quot;));</span>
+<span class="nc" id="L162">				p5.setAncho(new BigDecimal(&quot;0.07&quot;));</span>
+<span class="nc" id="L163">				p5.setAlto(new BigDecimal(&quot;0.04&quot;));</span>
+<span class="nc" id="L164">				p5.setStockActual(3);</span>
+<span class="nc" id="L165">				p5.setStockMinimo(20); // Stock crítico para disparar alerta</span>
+<span class="nc" id="L166">				p5.setEsEstrella(false);</span>
+<span class="nc" id="L167">				productoRepository.save(p5);</span>
+
+<span class="nc" id="L169">				System.out.println(&quot;====== PRODUCTOS INICIALES SEMBRADOS ======&quot;);</span>
+			}
+<span class="nc" id="L171">		};</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

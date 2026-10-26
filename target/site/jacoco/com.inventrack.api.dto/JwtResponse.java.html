@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">inventrack</a> &gt; <a href="index.source.html" class="el_package">com.inventrack.api.dto</a> &gt; <span class="el_source">JwtResponse.java</span></div><h1>JwtResponse.java</h1><pre class="source lang-java linenums">package com.inventrack.api.dto;
+
+import java.util.List;
+
+public class JwtResponse {
+    private String token;
+<span class="nc" id="L7">    private String type = &quot;Bearer&quot;;</span>
+    private Long id;
+    private String email;
+    private List&lt;String&gt; roles;
+
+<span class="nc" id="L12">    public JwtResponse(String accessToken, Long id, String email, List&lt;String&gt; roles) {</span>
+<span class="nc" id="L13">        this.token = accessToken;</span>
+<span class="nc" id="L14">        this.id = id;</span>
+<span class="nc" id="L15">        this.email = email;</span>
+<span class="nc" id="L16">        this.roles = roles;</span>
+<span class="nc" id="L17">    }</span>
+
+<span class="nc" id="L19">    public String getToken() { return token; }</span>
+<span class="nc" id="L20">    public void setToken(String token) { this.token = token; }</span>
+<span class="nc" id="L21">    public String getType() { return type; }</span>
+<span class="nc" id="L22">    public void setType(String type) { this.type = type; }</span>
+<span class="nc" id="L23">    public Long getId() { return id; }</span>
+<span class="nc" id="L24">    public void setId(Long id) { this.id = id; }</span>
+<span class="nc" id="L25">    public String getEmail() { return email; }</span>
+<span class="nc" id="L26">    public void setEmail(String email) { this.email = email; }</span>
+<span class="nc" id="L27">    public List&lt;String&gt; getRoles() { return roles; }</span>
+<span class="nc" id="L28">    public void setRoles(List&lt;String&gt; roles) { this.roles = roles; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

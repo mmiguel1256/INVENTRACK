@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Usuario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">inventrack</a> &gt; <a href="index.source.html" class="el_package">com.inventrack.api.models</a> &gt; <span class="el_source">Usuario.java</span></div><h1>Usuario.java</h1><pre class="source lang-java linenums">package com.inventrack.api.models;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = &quot;usuarios&quot;)
+public class Usuario {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = &quot;nombre_completo&quot;, nullable = false, length = 100)
+    private String nombreCompleto;
+    
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+    
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    @Column(name = &quot;password_hash&quot;, nullable = false, length = 255)
+    private String passwordHash;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = &quot;rol_id&quot;, nullable = false)
+    private Rol rol;
+    
+    @Column(nullable = false)
+<span class="nc" id="L28">    private Boolean estado = true;</span>
+
+<span class="nc" id="L30">    public Usuario() {}</span>
+
+<span class="nc" id="L32">    public Long getId() { return id; }</span>
+<span class="nc" id="L33">    public void setId(Long id) { this.id = id; }</span>
+<span class="nc" id="L34">    public String getNombreCompleto() { return nombreCompleto; }</span>
+<span class="nc" id="L35">    public void setNombreCompleto(String nombreCompleto) { this.nombreCompleto = nombreCompleto; }</span>
+<span class="nc" id="L36">    public String getEmail() { return email; }</span>
+<span class="nc" id="L37">    public void setEmail(String email) { this.email = email; }</span>
+<span class="nc" id="L38">    public String getPasswordHash() { return passwordHash; }</span>
+<span class="nc" id="L39">    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }</span>
+<span class="nc" id="L40">    public Rol getRol() { return rol; }</span>
+<span class="nc" id="L41">    public void setRol(Rol rol) { this.rol = rol; }</span>
+<span class="nc" id="L42">    public Boolean getEstado() { return estado; }</span>
+<span class="nc" id="L43">    public void setEstado(Boolean estado) { this.estado = estado; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

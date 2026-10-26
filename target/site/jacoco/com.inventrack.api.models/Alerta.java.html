@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Alerta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">inventrack</a> &gt; <a href="index.source.html" class="el_package">com.inventrack.api.models</a> &gt; <span class="el_source">Alerta.java</span></div><h1>Alerta.java</h1><pre class="source lang-java linenums">package com.inventrack.api.models;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = &quot;alertas&quot;)
+public class Alerta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;producto_id&quot;, nullable = false)
+    private Producto producto;
+
+    @Column(name = &quot;tipo_alerta&quot;, length = 50)
+    private String tipoAlerta;
+
+    @Column(nullable = false, columnDefinition = &quot;TEXT&quot;)
+    private String mensaje;
+
+    @Column(name = &quot;notificada_por_bot&quot;)
+<span class="nc" id="L25">    private Boolean notificadaPorBot = false;</span>
+
+    @Column(name = &quot;fecha_generacion&quot;, insertable = false, updatable = false)
+    private LocalDateTime fechaGeneracion;
+
+<span class="nc" id="L30">    public Alerta() {}</span>
+
+<span class="nc" id="L32">    public Long getId() { return id; }</span>
+<span class="nc" id="L33">    public void setId(Long id) { this.id = id; }</span>
+<span class="nc" id="L34">    public Producto getProducto() { return producto; }</span>
+<span class="nc" id="L35">    public void setProducto(Producto producto) { this.producto = producto; }</span>
+<span class="nc" id="L36">    public String getTipoAlerta() { return tipoAlerta; }</span>
+<span class="nc" id="L37">    public void setTipoAlerta(String tipoAlerta) { this.tipoAlerta = tipoAlerta; }</span>
+<span class="nc" id="L38">    public String getMensaje() { return mensaje; }</span>
+<span class="nc" id="L39">    public void setMensaje(String mensaje) { this.mensaje = mensaje; }</span>
+<span class="nc" id="L40">    public Boolean getNotificadaPorBot() { return notificadaPorBot; }</span>
+<span class="nc" id="L41">    public void setNotificadaPorBot(Boolean notificadaPorBot) { this.notificadaPorBot = notificadaPorBot; }</span>
+<span class="nc" id="L42">    public LocalDateTime getFechaGeneracion() { return fechaGeneracion; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

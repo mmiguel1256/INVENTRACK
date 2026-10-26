@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MotorPredictivoService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">inventrack</a> &gt; <a href="index.source.html" class="el_package">com.inventrack.api.services</a> &gt; <span class="el_source">MotorPredictivoService.java</span></div><h1>MotorPredictivoService.java</h1><pre class="source lang-java linenums">package com.inventrack.api.services;
+
+import com.inventrack.api.models.BodegaConfig;
+import com.inventrack.api.models.Producto;
+import com.inventrack.api.repositories.BodegaConfigRepository;
+import com.inventrack.api.repositories.ProductoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+<span class="nc" id="L16">public class MotorPredictivoService {</span>
+
+    @Autowired
+    private BodegaConfigRepository bodegaRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    public Map&lt;String, Object&gt; calcularEspacioActual() {
+<span class="nc" id="L25">        BodegaConfig bodega = bodegaRepository.findAll().stream().findFirst()</span>
+<span class="nc" id="L26">                .orElseThrow(() -&gt; new RuntimeException(&quot;Configuración de bodega no encontrada&quot;));</span>
+        
+<span class="nc" id="L28">        List&lt;Producto&gt; productos = productoRepository.findAll();</span>
+        
+<span class="nc" id="L30">        BigDecimal volumenOcupado = BigDecimal.ZERO;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        for (Producto p : productos) {</span>
+<span class="nc bnc" id="L32" title="All 6 branches missed.">            if (p.getStockActual() != null &amp;&amp; p.getStockActual() &gt; 0 &amp;&amp; p.getVolumen() != null) {</span>
+<span class="nc" id="L33">                BigDecimal volumenProductoTotal = p.getVolumen().multiply(BigDecimal.valueOf(p.getStockActual()));</span>
+<span class="nc" id="L34">                volumenOcupado = volumenOcupado.add(volumenProductoTotal);</span>
+            }
+        }
+
+<span class="nc" id="L38">        BigDecimal capacidadTotal = bodega.getCapacidadVolumetrica();</span>
+<span class="nc" id="L39">        BigDecimal volumenDisponible = capacidadTotal.subtract(volumenOcupado);</span>
+        
+        // Evitar números negativos si hay sobrecupo teórico
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (volumenDisponible.compareTo(BigDecimal.ZERO) &lt; 0) {</span>
+<span class="nc" id="L43">            volumenDisponible = BigDecimal.ZERO;</span>
+        }
+
+<span class="nc" id="L46">        double porcentajeOcupado = (volumenOcupado.doubleValue() / capacidadTotal.doubleValue()) * 100;</span>
+
+<span class="nc" id="L48">        Map&lt;String, Object&gt; resultado = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L49">        resultado.put(&quot;capacidadTotal&quot;, capacidadTotal);</span>
+<span class="nc" id="L50">        resultado.put(&quot;volumenOcupado&quot;, volumenOcupado);</span>
+<span class="nc" id="L51">        resultado.put(&quot;volumenDisponible&quot;, volumenDisponible);</span>
+<span class="nc" id="L52">        resultado.put(&quot;porcentajeOcupado&quot;, porcentajeOcupado);</span>
+        
+<span class="nc" id="L54">        return resultado;</span>
+    }
+
+    public Map&lt;String, Object&gt; estimarEspacioFuturo(Long productoId, int cantidadProyectada) {
+<span class="nc" id="L58">        Producto producto = productoRepository.findById(productoId)</span>
+<span class="nc" id="L59">                .orElseThrow(() -&gt; new RuntimeException(&quot;Producto no encontrado&quot;));</span>
+                
+<span class="nc" id="L61">        Map&lt;String, Object&gt; estadoActual = calcularEspacioActual();</span>
+<span class="nc" id="L62">        BigDecimal volumenOcupadoActual = (BigDecimal) estadoActual.get(&quot;volumenOcupado&quot;);</span>
+<span class="nc" id="L63">        BigDecimal capacidadTotal = (BigDecimal) estadoActual.get(&quot;capacidadTotal&quot;);</span>
+        
+        // Calcular la diferencia de volumen que aportará la nueva cantidad
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        int diferenciaCantidad = cantidadProyectada - (producto.getStockActual() != null ? producto.getStockActual() : 0);</span>
+<span class="nc" id="L67">        BigDecimal impactoVolumetrico = producto.getVolumen().multiply(BigDecimal.valueOf(diferenciaCantidad));</span>
+        
+<span class="nc" id="L69">        BigDecimal nuevoVolumenOcupado = volumenOcupadoActual.add(impactoVolumetrico);</span>
+<span class="nc" id="L70">        BigDecimal nuevoVolumenDisponible = capacidadTotal.subtract(nuevoVolumenOcupado);</span>
+        
+<span class="nc" id="L72">        double nuevoPorcentajeOcupado = (nuevoVolumenOcupado.doubleValue() / capacidadTotal.doubleValue()) * 100;</span>
+
+<span class="nc" id="L74">        Map&lt;String, Object&gt; estimacion = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L75">        estimacion.put(&quot;nuevoVolumenOcupado&quot;, nuevoVolumenOcupado);</span>
+<span class="nc" id="L76">        estimacion.put(&quot;nuevoVolumenDisponible&quot;, nuevoVolumenDisponible);</span>
+<span class="nc" id="L77">        estimacion.put(&quot;nuevoPorcentajeOcupado&quot;, nuevoPorcentajeOcupado);</span>
+<span class="nc" id="L78">        estimacion.put(&quot;impactoVolumetrico&quot;, impactoVolumetrico);</span>
+        
+<span class="nc" id="L80">        return estimacion;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
