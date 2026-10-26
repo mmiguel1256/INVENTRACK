@@ -33,32 +33,32 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-<span class="nc" id="L36">        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);</span>
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
+<span class="nc" id="L36">        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();</span>
+<span class="nc" id="L37">        authProvider.setUserDetailsService(userDetailsService);</span>
+<span class="nc" id="L38">        authProvider.setPasswordEncoder(passwordEncoder());</span>
+<span class="nc" id="L39">        return authProvider;</span>
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-<span class="nc" id="L43">        return authConfig.getAuthenticationManager();</span>
+<span class="nc" id="L44">        return authConfig.getAuthenticationManager();</span>
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-<span class="nc" id="L48">        return new BCryptPasswordEncoder();</span>
+<span class="nc" id="L49">        return new BCryptPasswordEncoder();</span>
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-<span class="nc" id="L53">        http.csrf(csrf -&gt; csrf.disable())</span>
-<span class="nc" id="L54">            .exceptionHandling(exception -&gt; exception.authenticationEntryPoint(unauthorizedHandler))</span>
-<span class="nc" id="L55">            .sessionManagement(session -&gt; session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))</span>
-<span class="nc" id="L56">            .authorizeHttpRequests(auth -&gt; </span>
-<span class="nc" id="L57">                auth.requestMatchers(&quot;/api/auth/**&quot;).permitAll()</span>
-<span class="nc" id="L58">                    .requestMatchers(&quot;/api/test/**&quot;).permitAll()</span>
-<span class="nc" id="L59">                    .requestMatchers(&quot;/&quot;, &quot;/index.html&quot;, &quot;/css/**&quot;, &quot;/js/**&quot;, &quot;/assets/**&quot;, &quot;/favicon.ico&quot;).permitAll()</span>
-<span class="nc" id="L60">                    .anyRequest().authenticated()</span>
-            );
+<span class="nc" id="L54">        http.csrf(csrf -&gt; csrf.disable())</span>
+<span class="nc" id="L55">                .exceptionHandling(exception -&gt; exception.authenticationEntryPoint(unauthorizedHandler))</span>
+<span class="nc" id="L56">                .sessionManagement(session -&gt; session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))</span>
+<span class="nc" id="L57">                .authorizeHttpRequests(auth -&gt; auth.requestMatchers(&quot;/api/auth/**&quot;).permitAll()</span>
+<span class="nc" id="L58">                        .requestMatchers(&quot;/api/test/**&quot;).permitAll()</span>
+<span class="nc" id="L59">                        .requestMatchers(&quot;/&quot;, &quot;/index.html&quot;, &quot;/css/**&quot;, &quot;/js/**&quot;, &quot;/assets/**&quot;, &quot;/favicon.ico&quot;)</span>
+<span class="nc" id="L60">                        .permitAll()</span>
+<span class="nc" id="L61">                        .anyRequest().authenticated());</span>
 
 <span class="nc" id="L63">        http.authenticationProvider(authenticationProvider());</span>
 <span class="nc" id="L64">        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);</span>
@@ -66,4 +66,4 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 <span class="nc" id="L66">        return http.build();</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

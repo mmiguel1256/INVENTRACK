@@ -1,33 +1,33 @@
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Alerta.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\UsuarioRepository.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\RolRepository.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\ProductoRepository.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\AuthTokenFilter.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\JwtUtils.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\BodegaConfig.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\config\SchedulingConfig.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\UsuarioController.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\MotorPredictivoController.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\dto\LoginRequest.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\ProductoController.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Usuario.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\BodegaConfigController.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\MovimientoInventarioRepository.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\TelegramBotService.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\AuthEntryPointJwt.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\SecurityConfig.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\UserDetailsImpl.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\MovimientoInventario.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Rol.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\MotorPredictivoService.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\AlertaCronJobService.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\ProductoService.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\UserDetailsServiceImpl.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\BodegaConfigRepository.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\MovimientoInventarioController.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\dto\JwtResponse.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Producto.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\AuthController.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\AlertaRepository.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\AlertaController.java
-C:\Users\PERSONAL\Downloads\INVENTRACK-Backend\src\main\java\com\inventrack\api\InventrackApplication.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Usuario.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\ProductoRepository.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\MotorPredictivoService.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\AlertaRepository.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\dto\JwtResponse.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Rol.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\UserDetailsServiceImpl.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\RolRepository.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\SecurityConfig.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\MovimientoInventarioController.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\AuthController.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\ProductoController.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\dto\LoginRequest.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\InventrackApplication.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\TelegramBotService.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\UsuarioController.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\MotorPredictivoController.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\AlertaController.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Alerta.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\JwtUtils.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\config\SchedulingConfig.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\MovimientoInventarioRepository.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\controllers\BodegaConfigController.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\BodegaConfigRepository.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\AuthEntryPointJwt.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\repositories\UsuarioRepository.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\AuthTokenFilter.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\MovimientoInventario.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\Producto.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\models\BodegaConfig.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\AlertaCronJobService.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\security\UserDetailsImpl.java
+C:\Trabajos Spring Eclipse\INVENTRACK-Backend\INVENTRACK-Backend\src\main\java\com\inventrack\api\services\ProductoService.java

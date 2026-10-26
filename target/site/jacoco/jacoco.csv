@@ -10,11 +10,11 @@ inventrack,com.inventrack.api.controllers,MotorPredictivoController,15,0,0,0,3,0
 inventrack,com.inventrack.api.controllers,AlertaController,7,0,0,0,2,0,2,0,2,0
 inventrack,com.inventrack.api.controllers,ProductoController,36,0,0,0,11,0,5,0,5,0
 inventrack,com.inventrack.api.security,AuthEntryPointJwt,8,0,0,0,3,0,2,0,2,0
-inventrack,com.inventrack.api.security,JwtUtils,59,14,0,0,12,5,2,3,2,3
+inventrack,com.inventrack.api.security,JwtUtils,94,33,12,6,19,10,10,4,2,3
 inventrack,com.inventrack.api.security,UserDetailsServiceImpl,21,0,0,0,4,0,3,0,3,0
 inventrack,com.inventrack.api.security,UserDetailsImpl,66,0,0,0,23,0,11,0,11,0
 inventrack,com.inventrack.api.security,AuthTokenFilter,66,0,8,0,16,0,7,0,3,0
-inventrack,com.inventrack.api.security,SecurityConfig,109,0,0,0,16,0,10,0,10,0
+inventrack,com.inventrack.api.security,SecurityConfig,118,0,0,0,19,0,10,0,10,0
 inventrack,com.inventrack.api.services,AlertaCronJobService,100,0,10,0,20,0,7,0,2,0
 inventrack,com.inventrack.api.services,ProductoService,194,0,20,0,42,0,19,0,9,0
 inventrack,com.inventrack.api.services,MotorPredictivoService,192,0,12,0,36,0,11,0,5,0
